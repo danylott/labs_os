@@ -11,6 +11,7 @@ public class Main {
     public static int errorNotInt(String value) {
         int result = 0;
         try {
+            value = value.replaceAll("\\p{C}", "");
             result = Integer.parseInt(value);
         }
         catch (NumberFormatException e)
@@ -42,7 +43,7 @@ public class Main {
         String echoResponse = pipe.readLine();
         System.out.println("Response: " + echoResponse );
         List<String> resp1 = Arrays.asList(echoResponse.split(" "));
-        if (errorNotInt(resp1.get(1)) == 0) {
+        if (errorNotInt(resp1.get(0)) == 0) {
             System.out.println("ERROR: 0 from response");
             first.cancelCommand();
             second.cancelCommand();
