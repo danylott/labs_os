@@ -40,6 +40,9 @@ public class Main {
         Manager second = createManager("second");
         first.runCommand(path_to_pipe);
         second.runCommand(path_to_pipe);
+        EscWindow escWindow = new EscWindow(first, second);
+        escWindow.frame.setVisible(true);
+
         String echoResponse = pipe.readLine();
         System.out.println("Response: " + echoResponse );
         List<String> resp1 = Arrays.asList(echoResponse.split(" "));
@@ -51,7 +54,5 @@ public class Main {
         }
         echoResponse = pipe.readLine();
         System.out.println("Response: " + echoResponse );
-        first.cancelCommand();
-        second.cancelCommand();
     }
 }

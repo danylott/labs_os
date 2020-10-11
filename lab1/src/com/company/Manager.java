@@ -30,7 +30,7 @@ public class Manager {
             processBuilder.command("bash", "-c", command);
             this.process = processBuilder.start();
 
-            System.out.println(command);
+//            System.out.println(command);
         }
         catch (Exception e)
         {
