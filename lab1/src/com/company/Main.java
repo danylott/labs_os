@@ -51,5 +51,7 @@ public class Main {
         }
         echoResponse = pipe.readLine();
         System.out.println("Response: " + echoResponse );
+        first.cancelCommand();
+        second.cancelCommand();
     }
 }
