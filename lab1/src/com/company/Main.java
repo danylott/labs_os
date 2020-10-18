@@ -1,5 +1,7 @@
 package com.company;
 
+import spos.lab1.demo.IntOps;
+
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.Arrays;
@@ -21,23 +23,30 @@ public class Main {
         }
         return result;
     }
+
+    public static int selectFunctions() {
+        System.out.println("Select 1 if you want to use custom functions and any other number if from lab1.jar");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Choose value (int):");
+        return errorNotInt(scanner.next());
+    }
+
     public static Manager createManager(String name) {
         System.out.println("Creating new Manager: " + name);
         Scanner scanner = new Scanner(System.in);
         System.out.println("Choose value (int):");
         int value = errorNotInt(scanner.next());
-        System.out.println("Choose multiplier (int):");
-        int multiplier = errorNotInt(scanner.next());
-        System.out.println("Choose delay (int):");
-        int delay = errorNotInt(scanner.next());
-        return new Manager(name, value, multiplier, delay);
+        return new Manager(name, value);
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
         String path_to_pipe = "/home/neknu/University/3course/OS/lab1/fifo";
         RandomAccessFile pipe = new RandomAccessFile(path_to_pipe, "rwd");
-        Manager first = createManager("first");
-        Manager second = createManager("second");
+        int type = selectFunctions();
+        String nameFirst = type == 1 ? "Function_F" : "Lab1.jar_F";
+        String nameSecond = type == 1 ? "Function_G" : "Lab1.jar_G";
+        Manager first = createManager(nameFirst);
+        Manager second = createManager(nameSecond);
         first.runCommand(path_to_pipe);
         second.runCommand(path_to_pipe);
         EscWindow escWindow = new EscWindow(first, second);

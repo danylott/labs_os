@@ -2,18 +2,64 @@ package com.company;
 
 import java.io.RandomAccessFile;
 import java.util.concurrent.TimeUnit;
+import spos.lab1.demo.IntOps;
 
 public class Runner {
-    public static int multiplier(String first, String second) {
-        return Integer.parseInt(first) * Integer.parseInt(second);
+    public static int f(Integer value) throws Exception {
+        switch (value) {
+            case 1:
+                return value;
+            case 2:
+                return -1;
+            case 3:
+                return 0;
+            case 4:
+                TimeUnit.SECONDS.sleep(value);
+            case 5:
+                TimeUnit.SECONDS.sleep(value);
+                return 10;
+            default:
+                throw new Exception("Error");
+        }
     }
-    public static void main(String[] args) {
 
-        System.out.println(args[0] + " " + args[1] + " " + args[2] + " " + args[3] + " " + args[4]);
+    public static int g(Integer value) throws Exception {
+        switch (value) {
+            case 1:
+                return 10;
+            case 2:
+                return -1;
+            case 5:
+                return 0;
+            case 4:
+                TimeUnit.SECONDS.sleep(value);
+            case 3:
+                TimeUnit.SECONDS.sleep(value);
+                return 2;
+            case 6:
+                TimeUnit.SECONDS.sleep(value);
+                return value * value;
+            default:
+                throw new Exception("Error");
+        }
+    }
+
+    public static void main(String[] args) {
         try {
-            TimeUnit.SECONDS.sleep(Integer.parseInt(args[3]));
-            RandomAccessFile pipe = new RandomAccessFile(args[0], "rwd");
-            pipe.writeChars(multiplier(args[1], args[2])+ " " + args[4] + "\n");
+            System.out.println(args[0] + " " + args[1] + " " + args[2]);
+            String path_to_pipe = args[0];
+            int value = Integer.parseInt(args[1]);
+            String name = args[2];
+            RandomAccessFile pipe = new RandomAccessFile(path_to_pipe, "rwd");
+            int result;
+            switch (name) {
+                case "Function_F" -> result = f(value);
+                case "Function_G" -> result = g(value);
+                case "Lab1.jar_F" -> result = IntOps.funcF(value);
+                default -> result = IntOps.funcG(value);
+            }
+
+            pipe.writeChars(result + " " + args[2] + "\n");
         } catch (Exception e) {
             e.printStackTrace();
         }

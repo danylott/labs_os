@@ -1,8 +1,8 @@
 package com.company;
 
-        import javax.swing.*;
-        import java.awt.event.KeyEvent;
-        import java.awt.event.KeyListener;
+import javax.swing.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 public class EscWindow implements KeyListener {
     private final Manager process1;
@@ -23,6 +23,7 @@ public class EscWindow implements KeyListener {
     public void cancelProcesses() {
         process1.cancelCommand();
         process2.cancelCommand();
+        System.out.println("Stop processes");
     }
 
     @Override
