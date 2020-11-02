@@ -23,7 +23,8 @@ public class EscWindow implements KeyListener {
     public void cancelProcesses() {
         process1.cancelCommand();
         process2.cancelCommand();
-        System.out.println("Stop processes");
+        System.out.println("Stop processes!");
+        System.out.println("Result: unknown");
     }
 
     @Override
@@ -31,6 +32,7 @@ public class EscWindow implements KeyListener {
         if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
             cancelProcesses();
             frame.setVisible(false);
+            System.exit(0);
         }
     }
 
@@ -39,6 +41,7 @@ public class EscWindow implements KeyListener {
         if (e.getKeyCode() == KeyEvent.VK_ESCAPE){
             cancelProcesses();
             frame.setVisible(false);
+            System.exit(0);
         }
     }
 
@@ -47,6 +50,7 @@ public class EscWindow implements KeyListener {
         if (e.getKeyCode() == KeyEvent.VK_ESCAPE){
             cancelProcesses();
             frame.setVisible(false);
+            System.exit(0);
         }
     }
 }

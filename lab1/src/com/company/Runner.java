@@ -8,16 +8,20 @@ public class Runner {
     public static int f(Integer value) throws Exception {
         switch (value) {
             case 1:
+                TimeUnit.SECONDS.sleep(3);
                 return value;
             case 2:
+                TimeUnit.SECONDS.sleep(8);
                 return -1;
             case 3:
                 return 0;
             case 4:
                 TimeUnit.SECONDS.sleep(value);
-            case 5:
-                TimeUnit.SECONDS.sleep(value);
                 return 10;
+            case 5:
+                return 1;
+            case 6:
+                TimeUnit.SECONDS.sleep(10000);
             default:
                 throw new Exception("Error");
         }
@@ -26,16 +30,19 @@ public class Runner {
     public static int g(Integer value) throws Exception {
         switch (value) {
             case 1:
+                TimeUnit.SECONDS.sleep(5);
                 return 10;
             case 2:
+                TimeUnit.SECONDS.sleep(3);
                 return -1;
-            case 5:
-                return 0;
-            case 4:
-                TimeUnit.SECONDS.sleep(value);
             case 3:
                 TimeUnit.SECONDS.sleep(value);
                 return 2;
+            case 4:
+                return 0;
+            case 5:
+                TimeUnit.SECONDS.sleep(10000);
+
             case 6:
                 TimeUnit.SECONDS.sleep(value);
                 return value * value;
