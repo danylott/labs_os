@@ -1,3 +1,6 @@
+package main;
+
+
 public class Common {
 
   static public int s2i (String s) {

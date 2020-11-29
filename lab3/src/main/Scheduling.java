@@ -6,13 +6,12 @@
 // is where the process scheduling summary is written.
 
 // Created by Alexander Reeder, 2001 January 06
+package main;
+
 
 import java.io.*;
 import java.util.*;
-import sProcess;
-import Common;
-import Results;
-import SchedulingAlgorithm;
+
 
 public class Scheduling {
 

@@ -1,3 +1,6 @@
+package main;
+
+
 public class Results {
   public String schedulingType;
   public String schedulingName;
