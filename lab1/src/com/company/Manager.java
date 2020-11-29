@@ -1,30 +1,20 @@
 package com.company;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.RandomAccessFile;
-import java.nio.charset.StandardCharsets;
-import java.util.concurrent.TimeUnit;
-
 public class Manager {
     public String name;
     private final int value;
-    private final int multiplier;
-    private final int delay;
     private Process process = null;
-    private final String baseCommand = "/home/neknu/.jdks/openjdk-15/bin/java -javaagent:/home/neknu/JetBrains/ideaIU-2020.2.2/idea-IU-202.7319.50/lib/idea_rt.jar=45241:/home/neknu/JetBrains/ideaIU-2020.2.2/idea-IU-202.7319.50/bin -Dfile.encoding=UTF-8 -classpath /home/neknu/University/3course/OS/lab1/out/production/lab1 com.company.Runner";
 
-    public Manager(String name, int value, int multiplier, int delay) {
+    public Manager(String name, int value) {
         this.name = name;
         this.value = value;
-        this.multiplier = multiplier;
-        this.delay = delay;
     }
 
     public void runCommand(String path_to_pipe) {
         try
         {
-            String command = baseCommand + " " + path_to_pipe + " " + value + " " + multiplier + " " + delay + " " + name;
+            String baseCommand = "/home/neknu/.jdks/openjdk-15/bin/java -javaagent:/home/neknu/JetBrains/ideaIU-2020.2.2/idea-IU-202.7319.50/lib/idea_rt.jar=38229:/home/neknu/JetBrains/ideaIU-2020.2.2/idea-IU-202.7319.50/bin -Dfile.encoding=UTF-8 -classpath /home/neknu/University/3course/OS/lab1/out/production/lab1:/home/neknu/University/3course/OS/lab1/lib/hamcrest-core-1.3.jar:/home/neknu/University/3course/OS/lab1/lib/junit-jupiter-5.4.2.jar:/home/neknu/University/3course/OS/lab1/lib/junit-jupiter-engine-5.4.2.jar:/home/neknu/University/3course/OS/lab1/lib/junit-platform-commons-1.4.2.jar:/home/neknu/University/3course/OS/lab1/lib/junit-jupiter-params-5.4.2.jar:/home/neknu/University/3course/OS/lab1/lib/apiguardian-api-1.0.0.jar:/home/neknu/University/3course/OS/lab1/lib/opentest4j-1.1.1.jar:/home/neknu/University/3course/OS/lab1/lib/junit-platform-engine-1.4.2.jar:/home/neknu/University/3course/OS/lab1/lib/junit-4.12.jar:/home/neknu/University/3course/OS/lab1/lib/junit-jupiter-api-5.4.2.jar:/home/neknu/University/3course/OS/lab1/lib/lab1.jar com.company.Runner";
+            String command = baseCommand + " " + path_to_pipe + " " + value + " " + name;
             var processBuilder = new ProcessBuilder();
 
             processBuilder.command("bash", "-c", command);
