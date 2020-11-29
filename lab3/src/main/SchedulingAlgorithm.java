@@ -19,18 +19,18 @@ public class SchedulingAlgorithm {
     int completed = 0;
     String resultsFile = "Summary-Processes";
 
-    result.schedulingType = "Batch (Nonpreemptive)";
+    result.schedulingType = "Non-preemptive";
     result.schedulingName = "First-Come First-Served"; 
     try {
       //BufferedWriter out = new BufferedWriter(new FileWriter(resultsFile));
       //OutputStream out = new FileOutputStream(resultsFile);
       PrintStream out = new PrintStream(new FileOutputStream(resultsFile));
       sProcess process = (sProcess) processVector.elementAt(currentProcess);
-      out.println("Process: " + currentProcess + " registered... (" + process.cputime + " " + process.ioblocking + " " + process.cpudone + " " + process.cpudone + ")");
+      out.println("Process: " + currentProcess + " registered... (" + process.toString() + ")");
       while (comptime < runtime) {
         if (process.cpudone == process.cputime) {
           completed++;
-          out.println("Process: " + currentProcess + " completed... (" + process.cputime + " " + process.ioblocking + " " + process.cpudone + " " + process.cpudone + ")");
+          out.println("Process: " + currentProcess + " completed... (" + process.toString() + ")");
           if (completed == size) {
             result.compuTime = comptime;
             out.close();
@@ -43,10 +43,10 @@ public class SchedulingAlgorithm {
             }
           }
           process = (sProcess) processVector.elementAt(currentProcess);
-          out.println("Process: " + currentProcess + " registered... (" + process.cputime + " " + process.ioblocking + " " + process.cpudone + " " + process.cpudone + ")");
+          out.println("Process: " + currentProcess + " registered... (" + process.toString() + ")");
         }      
         if (process.ioblocking == process.ionext) {
-          out.println("Process: " + currentProcess + " I/O blocked... (" + process.cputime + " " + process.ioblocking + " " + process.cpudone + " " + process.cpudone + ")");
+          out.println("Process: " + currentProcess + " I/O blocked... (" + process.toString() + ")");
           process.numblocked++;
           process.ionext = 0; 
           previousProcess = currentProcess;
@@ -57,7 +57,7 @@ public class SchedulingAlgorithm {
             }
           }
           process = (sProcess) processVector.elementAt(currentProcess);
-          out.println("Process: " + currentProcess + " registered... (" + process.cputime + " " + process.ioblocking + " " + process.cpudone + " " + process.cpudone + ")");
+          out.println("Process: " + currentProcess + " registered... (" + process.toString() + ")");
         }        
         process.cpudone++;       
         if (process.ioblocking > 0) {
