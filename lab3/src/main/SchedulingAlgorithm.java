@@ -5,10 +5,31 @@
 package main;
 
 
+import java.util.Comparator;
 import java.util.Vector;
 import java.io.*;
 
 public class SchedulingAlgorithm {
+
+  private static class ProcessPriorityComparator implements Comparator {
+    @Override
+    public int compare(Object o1, Object o2) {
+      sProcess first = (sProcess) o1;
+      sProcess second = (sProcess) o2;
+
+      if (first.priority == second.priority && first.cputime == second.cputime) {
+        if (first.ioblocking == second.ioblocking) {
+          return 0;
+        }
+        return first.ioblocking - second.ioblocking > 0 ? 1 : -1;
+      }
+      else if (first.priority == second.priority){
+        return first.cputime - second.cputime > 0 ? 1 : -1;
+      }
+      return first.priority > second.priority ? 1 : -1;
+    }
+  }
+
 
   public static Results Run(int runtime, Vector processVector, Results result) {
     int i = 0;
@@ -18,9 +39,10 @@ public class SchedulingAlgorithm {
     int size = processVector.size();
     int completed = 0;
     String resultsFile = "Summary-Processes";
-
     result.schedulingType = "Non-preemptive";
-    result.schedulingName = "First-Come First-Served"; 
+    result.schedulingName = "First-Come First-Served";
+    initPriority(processVector);
+    processVector.sort(new ProcessPriorityComparator());
     try {
       //BufferedWriter out = new BufferedWriter(new FileWriter(resultsFile));
       //OutputStream out = new FileOutputStream(resultsFile);
@@ -69,5 +91,14 @@ public class SchedulingAlgorithm {
     } catch (IOException e) { /* Handle exceptions */ }
     result.compuTime = comptime;
     return result;
+  }
+
+  private static void initPriority(Vector<sProcess> processes) {
+    int index = 0;
+    processes.sort(Comparator.comparingInt(o -> o.cputime));
+    for (sProcess process : processes) {
+      index++;
+      process.priority = index;
+    }
   }
 }

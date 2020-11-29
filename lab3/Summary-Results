@@ -1,9 +1,9 @@
 Scheduling Type: Non-preemptive
 Scheduling Name: First-Come First-Served
-Simulation Run Time: 1545
+Simulation Run Time: 2590
 Mean: 1100
 Standard Deviation: 510
 Process #	CPU Time	IO Blocking	CPU Completed	CPU Blocked
-0		515 (ms)	100 (ms)	515 (ms)	5 times
-1		515 (ms)	500 (ms)	515 (ms)	1 times
-2		515 (ms)	30 (ms)		515 (ms)	17 times
+0		630 (ms)	100 (ms)	630 (ms)	6 times
+1		980 (ms)	500 (ms)	980 (ms)	1 times
+2		980 (ms)	30 (ms)		980 (ms)	32 times
