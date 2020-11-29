@@ -40,7 +40,7 @@ public class SchedulingAlgorithm {
     int completed = 0;
     String resultsFile = "Summary-Processes";
     result.schedulingType = "Non-preemptive";
-    result.schedulingName = "First-Come First-Served";
+    result.schedulingName = "Shortest process next";
     initPriority(processVector);
     processVector.sort(new ProcessPriorityComparator());
     try {
