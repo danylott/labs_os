@@ -95,9 +95,18 @@ public class SchedulingAlgorithm {
 
   private static void initPriority(Vector<sProcess> processes) {
     int index = 0;
-    processes.sort(Comparator.comparingInt(o -> o.cputime));
+    int prevCpuTime = 0;
+    processes.sort(((o1, o2) -> {
+      if (o1.cputime == o2.cputime) {
+        return o1.ioblocking - o2.ioblocking;
+      }
+      return o1.cputime - o2.cputime;
+    }));
     for (sProcess process : processes) {
-      index++;
+      if(prevCpuTime == process.cputime) {
+        index += 1;
+      }
+      prevCpuTime = process.cputime;
       process.priority = index;
     }
   }
