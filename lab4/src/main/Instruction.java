@@ -1,4 +1,6 @@
-public class Instruction 
+package main;
+
+public class Instruction
 {
   public String inst;
   public long addr;

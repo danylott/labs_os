@@ -1,4 +1,6 @@
-public class Page 
+package main;
+
+public class Page
 {
   public int id;
   public int physical;

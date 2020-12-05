@@ -1,3 +1,6 @@
+package main;
+
+
 import java.applet.*;
 import java.awt.*;
 
