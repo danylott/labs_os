@@ -11,6 +11,7 @@ package main;
 import java.util.*;
 
 public class PageFault {
+  public static int timeDelta = 40;
   public static boolean[] workSet = new boolean[32];
   /**
    * The page replacement algorithm for the memory management simulator.
@@ -63,6 +64,7 @@ public class PageFault {
         if (firstPage == -1) {
           firstPage = count;
         }
+        workSet[page.physical] = page.lastTouchTime <= timeDelta;
         if (!workSet[page.physical]) {
             targetPage = count;
         }
