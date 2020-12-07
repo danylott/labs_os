@@ -57,12 +57,17 @@ public class PageFault {
     int firstPage = -1;
     boolean mapped = false;
     int targetPage = -1;
+//    System.out.println(Arrays.toString(workSet));
 
     while (!mapped) {
       Page page = ( Page ) mem.elementAt( count );
       if ( page.physical != -1 ) {
         if (firstPage == -1) {
           firstPage = count;
+        }
+        if(workSet[page.physical] && page.lastTouchTime > timeDelta) {
+          targetPage = count;
+          break;
         }
         workSet[page.physical] = page.lastTouchTime <= timeDelta;
         if (!workSet[page.physical]) {
