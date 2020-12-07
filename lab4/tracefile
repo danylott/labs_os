@@ -4,7 +4,7 @@ WRITE cc32 ... okay
 READ 4000 ... okay
 READ 4000 ... okay
 WRITE 6001 ... okay
-WRITE b8e3a ... page fault
-READ e9538 ... page fault
-WRITE e9538 ... okay
-READ 1e02e ... okay
+WRITE 84fb1 ... page fault
+READ ab25a ... page fault
+WRITE ab25a ... okay
+READ ab25a ... okay
